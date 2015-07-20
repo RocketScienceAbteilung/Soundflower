@@ -12,49 +12,49 @@
 	NSStatusItem	*mSbItem;
 	NSMenu			*mMenu;
 	NSMenuItem		*m2chMenu;
-	NSMenuItem		*m16chMenu;
+	NSMenuItem		*m64chMenu;
 	NSMenu			*m2chBuffer;
-	NSMenu			*m16chBuffer;
-    
+	NSMenu			*m64chBuffer;
+
 	BOOL			menuItemVisible;
     int             m2StartIndex;   //Menu Index of "None"
-	int				m16StartIndex;
-	
+	int				m64StartIndex;
+
 	NSMenuItem		*mCur2chDevice;
-	NSMenuItem		*mCur16chDevice;
+	NSMenuItem		*mCur64chDevice;
 	NSMenuItem		*mCur2chBufferSize;
-	NSMenuItem		*mCur16chBufferSize;
-	
+	NSMenuItem		*mCur64chBufferSize;
+
 	//NSMenuItem		*mSuspended2chDevice;
-	//NSMenuItem		*mSuspended16chDevice;
-    
+	//NSMenuItem		*mSuspended64chDevice;
+
     AudioDeviceID   mSuspended2chDeviceID;
-    AudioDeviceID   mSuspended16chDeviceID;
-	
+    AudioDeviceID   mSuspended64chDeviceID;
+
 	AudioDeviceID				mSoundflower2Device;
-	AudioDeviceID				mSoundflower16Device;
-	
-	AudioDeviceList *			mOutputDeviceList;	
-	
+	AudioDeviceID				mSoundflower64Device;
+
+	AudioDeviceList *			mOutputDeviceList;
+
 	UInt32 mNchnls2;
-	UInt32 mNchnls16;
-	
+	UInt32 mNchnls64;
+
 	AudioDeviceID mMenuID2[64];
-	AudioDeviceID mMenuID16[64];
-	
+	AudioDeviceID mMenuID64[64];
+
 	IBOutlet HelpWindowController *mAboutController;
     //IBOutlet VolumeView *mVolumeView;
     id mVolumeViewController2ch;
-    id mVolumeViewController16ch;
+    id mVolumeViewController64ch;
 }
 
 - (IBAction)suspend;
 - (IBAction)resume;
 
 - (IBAction)srChanged2ch;
-- (IBAction)srChanged16ch;
+- (IBAction)srChanged64ch;
 - (IBAction)srChanged2chOutput;
-- (IBAction)srChanged16chOutput;
+- (IBAction)srChanged64chOutput;
 - (IBAction)checkNchnls;
 - (IBAction)volChanged2ch;
 
@@ -62,11 +62,11 @@
 
 - (IBAction)outputDeviceSelected:(id)sender;
 - (IBAction)bufferSizeChanged2ch:(id)sender;
-- (IBAction)bufferSizeChanged16ch:(id)sender;
+- (IBAction)bufferSizeChanged64ch:(id)sender;
 - (IBAction)cloningChanged:(id)sender; //iSchemy
 - (IBAction)cloningChanged:(id)sender cloneChannels:(bool)clone; //here too
 - (IBAction)routingChanged2ch:(id)sender;
-- (IBAction)routingChanged16ch:(id)sender;
+- (IBAction)routingChanged64ch:(id)sender;
 
 - (void)buildRoutingMenu:(BOOL)is2ch;
 - (void)buildDeviceList;

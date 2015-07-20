@@ -1,4 +1,4 @@
-/*	Copyright: 	© Copyright 2004 Apple Computer, Inc. All rights reserved.
+/*	Copyright: 	ï¿½ Copyright 2004 Apple Computer, Inc. All rights reserved.
 
 	Disclaimer:	IMPORTANT:  This Apple software is supplied to you by Apple Computer, Inc.
 			("Apple") in consideration of your agreement to the following terms, and your
@@ -7,7 +7,7 @@
 			please do not use, install, modify or redistribute this Apple software.
 
 			In consideration of your agreement to abide by the following terms, and subject
-			to these terms, Apple grants you a personal, non-exclusive license, under AppleÕs
+			to these terms, Apple grants you a personal, non-exclusive license, under Apple's
 			copyrights in this original Apple software (the "Apple Software"), to use,
 			reproduce, modify and redistribute the Apple Software, with or without
 			modifications, in source and/or binary forms; provided that if you redistribute
@@ -37,7 +37,7 @@
 */
 /*=============================================================================
 	AudioThruEngine.h
-	
+
 =============================================================================*/
 
 #ifndef __AudioThruEngine_h__
@@ -51,44 +51,44 @@ class AudioThruEngine {
 public:
 	AudioThruEngine();
 	~AudioThruEngine();
-	
+
 	void	SetDevices(AudioDeviceID input, AudioDeviceID output);
 	void	SetInputDevice(AudioDeviceID input);
 	void	SetOutputDevice(AudioDeviceID output);
-	
+
 	void	Start();
 	bool	Stop();
 	void	Mute(bool mute = true) { mMuting = mute; }
 	bool	IsRunning() { return mRunning; }
-	
+
 	void	EnableThru(bool enable) { mThruing = enable; }
 	void	SetBufferSize(UInt32 size);
 	void	SetInputLoad(double load) { mInputLoad = load; }
 	void	SetOutputLoad(double load) { mOutputLoad = load; }
-	
+
 	void	SetExtraLatency(SInt32 frames);
 	double	GetThruTime() { return mThruTime; }
 	SInt32	GetThruLatency() { return mActualThruLatency; }
-	
+
 	UInt32	GetOutputNchnls();
 	AudioDeviceID	GetOutputDevice() { return mOutputDevice.mID; }
 	AudioDeviceID	GetInputDevice() { return mInputDevice.mID; }
-	
+
 	OSStatus	MatchSampleRate(bool useInputDevice);
-	
+
 	// valid values are 0 to nchnls-1;  -1 = off
 	void	SetChannelMap(int ch, int val) { mChannelMap[ch] = val; }
 	int		GetChannelMap(int ch) { return mChannelMap[ch]; }
-	
+
 //	char *	GetErrorMessage() { return mErrorMessage; }
 
 	Byte			*mWorkBuf;
-	
+
 	//iSchemy's edit
 	void			SetCloneChannels(bool clone) { mCloneChannels = clone; }
 	bool			CloneChannels() { return mCloneChannels; }
-	
-	
+
+
 protected:
 	enum IOProcState {
 		kOff,
@@ -96,7 +96,7 @@ protected:
 		kRunning,
 		kStopRequested
 	};
-	
+
 //	void	ApplyLoad(double load);
 
 	static OSStatus InputIOProc (	AudioDeviceID			inDevice,
@@ -115,14 +115,14 @@ protected:
 									const AudioTimeStamp*	inOutputTime,
 									void*					inClientData);
 
-	static OSStatus OutputIOProc16 (	AudioDeviceID			inDevice,
+	static OSStatus OutputIOProc64 (	AudioDeviceID			inDevice,
 									const AudioTimeStamp*	inNow,
 									const AudioBufferList*	inInputData,
 									const AudioTimeStamp*	inInputTime,
 									AudioBufferList*		outOutputData,
 									const AudioTimeStamp*	inOutputTime,
 									void*					inClientData);
-									
+
 	void	ComputeThruOffset();
 
 	AudioDevice		mInputDevice, mOutputDevice;
@@ -139,11 +139,11 @@ protected:
 	AudioRingBuffer *mInputBuffer;
 	double			mInputLoad, mOutputLoad;
 	double			mThruTime;
-	
+
 	int				mChannelMap[64];
 	AudioDeviceIOProc mOutputIOProc;
 	//char			mErrorMessage[128];
-	
+
 	// iSchemy's edit
 	bool			mCloneChannels;
 	// end
